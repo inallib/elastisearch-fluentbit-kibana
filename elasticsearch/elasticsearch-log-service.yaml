@@ -1,0 +1,20 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: elasticsearch-shared-log
+  namespace: logging
+spec:
+  ports:
+    - name: '9200'
+      protocol: TCP
+      port: 9200
+      targetPort: 9200
+    - name: '9300'
+      protocol: TCP
+      port: 9300
+      targetPort: 9300
+  selector:
+    io.kompose.service: elasticsearch-log
+  type: NodePort
+  sessionAffinity: None
+  externalTrafficPolicy: Cluster

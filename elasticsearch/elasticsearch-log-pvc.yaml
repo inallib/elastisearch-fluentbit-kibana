@@ -1,0 +1,14 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: efs-elasticsearch-pvc-shared-log
+  namespace: logging
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 5Gi
+  volumeName: efs-elasticsearch-pv-shared-log
+  storageClassName: efs-sc-shared-log
+  volumeMode: Filesystem

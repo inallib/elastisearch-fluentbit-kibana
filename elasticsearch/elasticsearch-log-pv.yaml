@@ -1,0 +1,21 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: efs-elasticsearch-pv-shared-log
+spec:
+  capacity:
+    storage: 5Gi
+  csi:
+    driver: efs.csi.aws.com
+    volumeHandle: 'fs-9e1sdd5c4f::fsap-0191c5efsdccc76124c'
+  accessModes:
+    - ReadWriteMany
+  claimRef:
+    kind: PersistentVolumeClaim
+    namespace: logging
+    name: efs-elasticsearch-pvc-shared-log
+    apiVersion: v1
+    resourceVersion: '52406079'
+  persistentVolumeReclaimPolicy: Retain
+  storageClassName: efs-sc-shared-log
+  volumeMode: Filesystem
